@@ -22,7 +22,20 @@ At the first level a character starts off in some package, in Maya for instance,
 
 So the modeller is reponsible for creating the character, create dimension polygons, and associating each polygon with one or more joints, so that as he animates a character the polygons move with the joints.
 
-Typically there's either hard skinning or soft skinning
+Typically there's either hard skinning or soft skinning. In hard skinning the polygon pocket parented directly to the joint, which is pretty much what we used to do with the scene graph.  
+
+In soft skinning, a polygon could actually shares vertices between different joints. There might be some vertices in this joint and some vertices in another joint. Furthermore, each vertex might not be entirely one joint or another, some individual vertices might be partially one joint partially another joint. That's how you get the nice smooth effects of elbows and stuff like that.  
+
+Audience Member: And then you can tweak how much they're influenced by each of them separately.  
+
+And nowadays all these animation packages have nice tools where you can relatively easily set up the skinning ratio, you just say basically here's my polygons here's the skeleton click, boom, it's all done. So I'm told.  
+
+So at some point we run Maya2Egg, or Soft2Egg, or Max2Egg or whatever the heck we're running, and we produce an .egg file.  
+Typically at least two .egg files for each character, because we have one for the model, and then we might have a different .egg file for each animation, say for instance a swimming animation.  
+
+Now the model file and the animation file are totally different kinds of files. The model file has just polygons and joints, which reflects [the skeleton and mesh] hierarchy, and the animation file just has a table of frames, matrix positions, one per joint per frames.  
+
+They don't have to be different .egg files, its possible for these to be the same .egg file, but typically we make them separate .egg files because we have multiple animations, we want to be able to mix and match particular animations we want to play.
 
 
 -Notes-  
